@@ -37,6 +37,7 @@ public class DataConfig {
         jpaProperties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
         jpaProperties.put("hibernate.show_sql", "true");
         jpaProperties.put("hibernate.format_sql", "true");
+        jpaProperties.put("hibernate.hbm2ddl.auto", "create-drop");
 
         emf.setJpaProperties(jpaProperties);
         emf.afterPropertiesSet();

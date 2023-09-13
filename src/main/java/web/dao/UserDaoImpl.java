@@ -6,7 +6,6 @@ import web.model.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import java.util.List;
 
 
@@ -20,8 +19,8 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> getAllUsers() {
-        TypedQuery<User> query = em.createQuery("SELECT u FROM User u", User.class);
-        return query.getResultList();
+       return em.createQuery("SELECT u FROM User u", User.class).getResultList();
+
     }
     @Override
     public void saveUser(User user) {
@@ -37,12 +36,12 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void updateUser(User user) {
         em.merge(user);
-
     }
+//
 
     @Override
-    public void deleteUser(User user) {
-        em.remove(user);
-
+    public void deleteUser(Long id) {
+        User deletingUser = em.find(User.class,id);
+        em.remove(deletingUser);
     }
 }
